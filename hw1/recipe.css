@@ -26,7 +26,7 @@ a {
     color: #A4A400 ;
 }
 ul > li {
-    list-style-image: url('http://www.cs.washington.edu/education/courses/cse190m/09sp/homework/1/pie_icon.gif');
+    list-style-image: url('https://courses.cs.washington.edu/courses/cse190m/09sp/homework/1/pie_icon.gif');
 }
 pre {
     font-family: monospace;
