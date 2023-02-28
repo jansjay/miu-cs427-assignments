@@ -30,6 +30,8 @@ ul > li {
 }
 pre {
     font-family: monospace;
+    text-align: right;
+    white-space: pre-line;
 }
 .deleted {
     text-decoration: line-through;
@@ -42,4 +44,7 @@ pre {
     font-style: italic;
     margin-left: 2em;
     margin-right: 2em;
+}
+p.footer {
+    text-align: right;
 }
