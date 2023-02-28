@@ -1,0 +1,20 @@
+body{
+    background-color: #595647 ;
+    color: white;
+    font-family: Trebuchet MS, sans-serif;
+}
+h1, h2 {
+    color: #a4b8ed;
+}
+a.imdb{
+    color: #a9624f;
+}
+span.my-characteristics {
+    color: #ede683;
+}
+p.movie-desc {
+    font-style: italic;
+}
+span.neighbor-fun-fact {
+    font-style: italic;
+}
