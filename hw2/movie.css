@@ -94,4 +94,13 @@ h1 {
 #pagination {
     background-color: #A2B964;
     text-align: center;
+    margin: 0;
+    clear: both;
+}
+#validators {
+    clear: both;
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
