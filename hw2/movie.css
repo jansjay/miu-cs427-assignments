@@ -1,3 +1,8 @@
+/*
+Sanjaya Jaysooriya 
+615730
+CS472-2023-03A-03D-01
+*/
 body {
     background-image: url('background.png');
     font-size: 8pt;
@@ -100,7 +105,7 @@ h1 {
 #validators {
     clear: both;
     opacity: 0.5;
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
 }
