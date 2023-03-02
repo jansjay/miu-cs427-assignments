@@ -23,31 +23,31 @@ CS472-2023-03A-03D-01
                 <fieldset>
                     <legend>New User Signup:</legend>
                     <label class="input-label" for="name">Name:</label>
-                    <input name="name" title="Enter a name upto 16 characters" maxlength="16" size="16" type="text">
+                    <input id="name" name="name" title="Enter a name upto 16 characters" maxlength="16" size="16" type="text">
                     <br>
-                    <label class="input-label" for="gender">Gender:</label>
+                    <label class="input-label">Gender:</label>
                     <input id="male" name="gender" type="radio">
                     <label for="male">Male</label>
                     <input id="female" name="gender" type="radio" checked>
                     <label for="female">Female</label>                    
                     <br>
                     <label class="input-label" for="age">Age:</label>
-                    <input name="age" title="Enter your age (two numbers)" size="6" type="text" width="2" pattern="[\d]{2}" maxlength="2">
+                    <input id="age" name="age" title="Enter your age (two numbers)" size="6" type="text"pattern="[\d]{2}" maxlength="2">
                     <br>
                     <label class="input-label" for="personality-type">Personality Type:</label>
-                    <input name="personality-type" title="Enter your personality Type (four characters)" size="6" type="text" width="4" maxlength="4"> (<a rel="noopener" href="http://www.humanmetrics.com/cgi-win/JTypes2.asp" target="_blank">Don't know your type?</a>)
+                    <input id="personality-type" name="personality-type" title="Enter your personality Type (four characters)" size="6" type="text" maxlength="4"> (<a rel="noopener" href="http://www.humanmetrics.com/cgi-win/JTypes2.asp" target="_blank">Don't know your type?</a>)
                     <br>
                     <label class="input-label" for="favourite-os">Favourite OS:</label>
-                    <select name="favourite-os" title="Select your favourite OS">
+                    <select id="favourite-os" name="favourite-os" title="Select your favourite OS">
                         <option value="Windows" selected>Windows</option>
                         <option value="Mac OS X">Mac OS X</option>
                         <option value="Linux">Linux</option>
                     </select>
                     <br>
                     <label class="input-label" for="seeking-age-from">Seeking Age:</label>
-                    <input name="seeking-age-from" title="Enter your Seeking Age min (two numbers)" size="6" type="text" width="2" placeholder="min" pattern="[\d]{2}" maxlength="2">
+                    <input id="seeking-age-from" name="seeking-age-from" title="Enter your Seeking Age min (two numbers)" size="6" type="text" placeholder="min" pattern="[\d]{2}" maxlength="2">
                     <label for="seeking-age-to">to</label>
-                    <input name="seeking-age-to" title="Enter your Seeking Age max (two numbers)" size="6" type="text" width="2" placeholder="max" pattern="[\d]{2}" maxlength="2">
+                    <input id="seeking-age-to" name="seeking-age-to" title="Enter your Seeking Age max (two numbers)" size="6" type="text" placeholder="max" pattern="[\d]{2}" maxlength="2">
                     <br>
                     <input type="submit" value="Sign Up">
                 </fieldset>
