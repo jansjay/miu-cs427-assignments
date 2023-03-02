@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Retrieve Grade</title>
+    </head>
+    <body>
+        <h1>Retrieve your grade</h1>
+        <form action="https://mumstudents.org/params.php">
+            <label name="label-name" for="name">Name: </label>
+            <input type="text" name="name" title="Name" placeholder="Enter your Name">
+            <br>
+            <label name="label-student-id" for="student-id">Student ID:</label>
+            <input type="number" name="student-id" title="Student ID in the correct format." placeholder="123456">
+            <br>
+            <fieldset name="field-set-entry" >
+                <label name="label-student-entry" for="student-entry">Student Entry:</label>
+                <label><input type="radio" name="student-entry" value="2022-April"> 2022-April</label>
+                <label><input type="radio" name="student-entry" value="2022-August"> 2022-August</label>
+                <label><input type="radio" name="student-entry" value="2022-October"> 2022-October</label>
+            </fieldset>
+            <br>
+            <label name="label-assignment" for="assignment">Assignment:</label>
+            <select name="assignment" title="Choose an Assignment">
+                <option value="assignment1">Assignment 1</option>
+                <option value="assignment2">Assignment 2</option>
+                <option value="assignment3">Assignment 3</option>
+                <option value="assignment4">Assignment 4</option>
+            </select>
+            <br>
+            <label for="security-confirmation">I confirm that I am not lying and only looking up my own grade</label>
+            <input type="checkbox" name="security-confirmation" title="Security Confirmation">
+            <br>
+            <input type="submit" value="Grade!">
+        </form>
+    </body>
+</html>
