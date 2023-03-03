@@ -1,0 +1,35 @@
+/*
+Sanjaya Jaysooriya 
+615730
+CS472-2023-03A-03D-01
+*/
+#main {
+    border: 2px solid blue;
+    padding: 1em;
+    overflow: hidden;
+}
+#main h1 {
+    color: blue;
+}
+#column1 {
+    float: left;
+    padding-left: 2%;
+}
+#column2 {
+    float: right;    
+    padding-right: 2%;
+}
+#column1, #column2 {
+    width: 47%;
+}
+input, button, textarea {
+    width: 90%;
+    margin-bottom: 1em;
+    box-sizing: border-box;
+}
+textarea {
+    height: 6.5em;
+}
+
+
+

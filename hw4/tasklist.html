@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Task List Application</title>
+        <link href="tasklist.css" type="text/css" rel="stylesheet">
+        <script src="tasklist.js" type="text/javascript" rel="javascript"></script>
+    </head>
+    <body onload="displayList()">
+        <div id="main">
+            <h1>Task List</h1>
+            <div>
+                <form id="form">
+                    <div id="column1">
+                        <label for="task">Task</label><br>
+                        <input type="text" name="task" id="task">
+                        <button type="button" id="button-add" onclick="addTask()">Add Task</button><br>
+                        <button type="button" id="button-clear" onclick="clearTasks()">Clear Tasks</button><br>
+                    </div>               
+                    <div id="column2">
+                        <lable>Task List</lable><br>
+                        <textarea id="task-list" readonly title="Task List"></textarea>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </body>
+</html>
