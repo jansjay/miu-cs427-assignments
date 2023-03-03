@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<!--
+Sanjaya Jaysooriya 
+615730
+CS472-2023-03A-03D-01
+-->
+<html lang="en">
+	<!--
+	CSE 190M, Summer 2012
+	This file is a tip calculator page using JavaScript.
+	-->
+<script>
+function calcTip() {
+    var subTotalElem = document.getElementById('subtotal');
+    var tipElem = document.getElementById('tip');
+    var totalElem = document.getElementById('total');
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    if(!!subTotalElem && !!tipElem && !!totalElem) {
+        var subTotal = subTotalElem.value;
+        var tip = tipElem.value;
+        if(!isNaN(parseFloat(subTotal)) && !isNaN(parseFloat(tip))){
+            const total = parseFloat(subTotal) * (1 + (parseFloat(tip) / 100));
+            totalElem.innerText = formatter.format(total);
+        }
+        else {
+            totalElem.innerText = "$ ";
+        }
+    }
+}
+
+</script>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tip Calculator</title>
+		<link href="https://mumstudents.org/cs472/2023-03-BL/labs/tip_calculator/tip.css" type="text/css" rel="stylesheet" />
+		<!-- <script src="tip.js" type="text/javascript"></script> -->
+	</head>
+
+
+	<body>
+		<h1>
+			<img id="logo" src="https://mumstudents.org/cs472/2023-03-BL/labs/tip_calculator/calc.jpg" alt="++--**//" />
+			  Tip Calculator
+		</h1>
+
+		<div>
+			<label><input id="subtotal" type="text" /> $ Subtotal</label>
+		</div>
+
+		<div>
+			<label><input id="tip" type="text" /> % Tip</label>
+		</div>
+
+		<div>
+			<button id="btn"  onclick="calcTip();">Calculate Tip</button>
+		</div>
+
+		<hr />
+
+		<div>
+			<h2>Your total:</h2>
+			<p id="total">$0.00</p>
+		</div>
+	</body>
+</html>
