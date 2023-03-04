@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+Sanjaya Jaysooriya 
+615730
+CS472-2023-03A-03D-01
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Timer Exercises</title>
+	</head>
+
+	<body>
+<h1>Timer Exercises</h1>
+<ol>
+    <li>
+        What is the difference between the following 2 statements?
+        <ul>
+            <li>
+                <strong>setTimeout(booyah, 2000);</strong> <br>
+                Passes the function definition of booyah to the setTimeout function.
+            </li>
+            <li>
+                <strong>setTimeout(booyah(), 2000);</strong><br>
+                Passes the output of the booyah() function to the setTimeout function.                
+            </li>
+        </ul>
+    </li>
+    <li>
+        What do the following 2 alerts display (answer without running the code)?
+        <pre>
+        var myfunc = function(a, x) {
+            return a * x;
+        };
+        var x = myfunc(2, 3);
+        var y = myfunc;
+        alert(x);
+        alert(y(2,3));
+        </pre>
+        <ul>
+            <li>
+                <strong>alert(x)</strong><br>
+                6
+            </li>
+            <li>
+                <strong>alert(y(2,3))</strong><br>
+                6
+            </li>
+        </ul>
+    </li>
+    <li>
+        Write functions booyah1 and booyah2 so that in both cases below, an alert box comes up after 2 seconds that  says “BOOYAH!”<br>
+        <strong>setTimeout(booyah1, 2000);</strong><br>
+        <strong>setTimeout(booyah2(), 2000);</strong><br>
+        <pre>
+            function booyah1() {
+                alert("BOOYAH!");
+            }
+            function booyah2() {
+                return function () {
+                    alert("BOOYAH!");
+                }
+            }
+        </pre>
+        
+    </li>
+    <li>
+        <strong>
+            What is "Unobtrusive Javascript"? What is the practical application of Unobtrusive Javascript (and the reasons for using it) </strong><br>
+            Unobtrusive Javascript is "not including any javascript code in html code at all".  Javascript code attaches any events during the load of javascript by manupulating the dom tree. <br>
+            <br>
+            If javascript is not supported, the html will be displayed without any issues. <br>
+            Also this makes it possible to maintain the separation of conserns during implementation. 
+            The data is defined in html, presentation using css and behavior using javascript <br>
+    </li>
+</ol>
+    </body>
+</html>
