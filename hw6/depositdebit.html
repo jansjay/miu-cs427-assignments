@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Deposit/Debit</title>
+    <script src="bankaccountapp.js" type="text/JavaScript"></script>
+</head>
+<body>
+    <div>
+        <div id="div-action"></div>
+        <form action="bankaccountapp.html" method="GET">
+            <label for="account">Account Name: </label>
+            <select id="account" name="account" placeholder="Select account">
+                <option></option>
+            </select><br>
+            <label for="amount">Deposit: </label><input name="amount" id="amount" placeholder="Enter deposit amount" type="text"><br>
+            <input type="hidden" id="action" name="action">
+            <input type="submit" id="submit" value="Submit"><br>
+        </form>
+    </div>
+</body>
+</html>
