@@ -1,5 +1,6 @@
 window.onload = onDocumentLoaded;
 function onDocumentLoaded() {
+    // Note: not using the localStorage, or the Account class for transfer between pages
     let createAccountElement = document.getElementById("create-button");
     //Main window
     if(!!createAccountElement) {
@@ -7,9 +8,66 @@ function onDocumentLoaded() {
     }
     let updateAccountElement = document.getElementById("submit");
     // child window
-    if(!!updateAccountElement) {
-        // Note: not using the localStorage
+    if(!!updateAccountElement) {        
         childWindowInit();
+    }
+}
+
+// Note class does not access any UI elements.
+class Account {
+    static #accountInfoList = [];
+    balance = 0;
+    constructor(accountName, depositAmount) {
+        if(accountName === ""){
+            throw new Error("Account Name cannot be empty.")
+        }
+        if(isNaN(depositAmount) || depositAmount <= 0){
+            throw new Error("Deposit amount should be greater than 0, and should be a number.")
+        }        
+        this.accountName = accountName;
+        this.balance += depositAmount;
+    }
+    static addAccount(accountName, depositAmount){        
+        this.#accountInfoList.push(new Account(accountName, depositAmount));
+        this.#saveToLocalStorage();        
+    }
+    static #saveToLocalStorage(){
+        localStorage.setItem("account-list", JSON.stringify(this.#accountInfoList));
+    }
+    static loadAccounts(){
+        let accountsList = localStorage.getItem("account-list");
+        if(accountsList != undefined || accountsList != null) {
+            this.#accountInfoList = JSON.parse(localStorage.getItem("account-list"));
+        }
+    }
+    static getAccountsInfoString() {
+        let accountsString = "";
+        for(var i = 0; i < this.#accountInfoList.length; i++) {
+            accountsString += "Account Name: " + this.#accountInfoList[i].accountName + " ";
+            accountsString += "Balance: " + this.#accountInfoList[i].balance + "\n";
+        }
+        return accountsString;
+    }
+    static getAccountsNamesArray(){
+        return this.#accountInfoList.map(x => x.accountName);
+    }
+
+    static deposit(accountName, amount){
+        for(var i = 0; i < this.#accountInfoList.length; i++) {
+            if(accountName == this.#accountInfoList[i].accountName){
+                this.#accountInfoList[i].balance = parseFloat(this.#accountInfoList[i].balance) + amount;
+            }
+        }
+        this.#saveToLocalStorage();
+    }
+
+    static debit(accountName, amount){
+        for(var i = 0; i < this.#accountInfoList.length; i++) {
+            if(accountName == this.#accountInfoList[i].accountName){
+                this.#accountInfoList[i].balance = parseFloat(this.#accountInfoList[i].balance) - amount;
+            }
+        }
+        this.#saveToLocalStorage();
     }
 }
 
@@ -27,7 +85,7 @@ createAccountClicked = function() {
     const accountName = accountNameElem.value;
     let depositAmount = parseFloat(depositAmountElem.value);
     try{
-        Account.addAccount(new Account(accountName, depositAmount));
+        Account.addAccount(accountName, depositAmount);
         displayAccounts();
     } catch(err){
         alert(err);
@@ -37,63 +95,6 @@ displayAccounts = function() {
     document.getElementById("account-list").value = Account.getAccountsInfoString();
 }
 
-class Account {
-    static #accountsList = [];
-    balance = 0;
-    constructor(accountName, depositAmount) {
-        if(accountName === ""){
-            throw new Error("Account Name cannot be empty.")
-        }
-        if(isNaN(depositAmount) || depositAmount <= 0){
-            throw new Error("Deposit amount should be greater than 0, and should be a number.")
-        }        
-        this.accountName = accountName;
-        this.balance += depositAmount;
-    }
-    static addAccount(account){
-        this.#accountsList.push(account);
-        this.#saveToLocalStorage();        
-    }
-    static #saveToLocalStorage(){
-        localStorage.setItem("account-list", JSON.stringify(this.#accountsList));
-    }
-    static loadAccounts(){
-        let accountsList = localStorage.getItem("account-list");
-        if(accountsList != undefined || accountsList != null) {
-            this.#accountsList = JSON.parse(localStorage.getItem("account-list"));
-        }
-    }
-    static getAccountsInfoString() {
-        let accountsString = "";
-        for(var i = 0; i < this.#accountsList.length; i++) {
-            accountsString += "Account Name: " + this.#accountsList[i].accountName + " ";
-            accountsString += "Balance: " + this.#accountsList[i].balance + "\n";
-        }
-        return accountsString;
-    }
-    static getAccountsNamesArray(){
-        return this.#accountsList.map(x => x.accountName);
-    }
-
-    static deposit(accountName, amount){
-        for(var i = 0; i < this.#accountsList.length; i++) {
-            if(accountName == this.#accountsList[i].accountName){
-                this.#accountsList[i].balance = parseFloat(this.#accountsList[i].balance) + amount;
-            }
-        }
-        this.#saveToLocalStorage();
-    }
-
-    static debit(accountName, amount){
-        for(var i = 0; i < this.#accountsList.length; i++) {
-            if(accountName == this.#accountsList[i].accountName){
-                this.#accountsList[i].balance = parseFloat(this.#accountsList[i].balance) - amount;
-            }
-        }
-        this.#saveToLocalStorage();
-    }
-}
-
 parentWindowInit = function() {
     let createAccountElement = document.getElementById("create-button");
     createAccountElement.onclick = createAccountClicked;
@@ -101,7 +102,7 @@ parentWindowInit = function() {
     displayAccounts();
     document.getElementById("debit-button").onclick = debitClicked;
     document.getElementById("deposit-button").onclick = depositClicked;
-    // Note: not using the localStorage for transfer between pages
+    // Note: not using the localStorage, or the Account class for transfer between pages
     const queryString = window.location.search;
     if(!!queryString) {
         const urlParams = new URLSearchParams(queryString);
@@ -142,7 +143,7 @@ childWindowButtonState = function() {
 }
 
 childWindowInit = function() {
-    // Note: not using the localStorage
+    // Note: not using the localStorage, or the Account class for transfer between pages
     const queryString = window.location.search;
     if(!!queryString) {
         const urlParams = new URLSearchParams(queryString);
