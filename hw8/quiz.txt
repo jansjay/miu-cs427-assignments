@@ -1,6 +1,6 @@
 1. In jQuery terminology, what is the difference between the “jQuery function” and the “jQuery object”?
 jQuery function is the function declaration "jQuery()" which is aliased by "$".
-jQuery object is what is returned when jQuery function is called.
+jQuery object is what is returned when jQuery function is called (with parameters).
 
 2. Write jQuery code to find all h1 elements that are children of a div element and make their background
 color red.

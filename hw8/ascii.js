@@ -63,7 +63,7 @@ $(document).ready(function(){
         $("#mytextarea").css("fontSize",$("#font-select option:selected").val()+"pt");
     });
     $("#speed-chk").change(function(){
-        if($("#speed-chk").val()) {
+        if($("#speed-chk").is(":checked")) {
             speed = 50;
         } else {
             speed = 250;
