@@ -23,9 +23,12 @@ let stop = () => {
     $(".boundary").unbind("mouseleave");
     $("#start").click(start);
     $("#end").unbind("click");
+    $("#end").unbind("mouseenter");
 }
 let boundaryMouseEnter = async(eventObject) => {
     eventObject.target.style.backgroundColor ="red";
+    stop();
+    await sleep(100);
     lose();
 }
 let boundaryMouseLeave = (eventObject) => {
@@ -40,4 +43,7 @@ let win = () => {
     colorBoundaries("green");
     $("#status").text("You Win! :] Click the \"S\" again to begin.");
     stop();
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));    
 }
