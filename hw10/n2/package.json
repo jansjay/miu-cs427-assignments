@@ -1,0 +1,11 @@
+{
+  "name": "n2",
+  "version": "1.0.0",
+  "description": "CS 472 n2",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
