@@ -12,7 +12,9 @@ function readAndReplaceIndexHtml(res, numberOne, numberTwo, result, operator) {
         
         data = data.toString().replace(/\{\{numberOne\}\}/, numberOne);        
         data = data.toString().replace(/\{\{numberTwo\}\}/, numberTwo);
-        data = data.toString().replace(/\{\{result\}\}/, result);
+        data = data.toString().replace(/\{\{result\}\}/, result == "" ? "" : "The Answer is:" + result);
+        data = data.toString().replace(/\{\{Another\}\}/, result == "" ? "" : "Another Calculation");
+
         switch (operator) {
             case "add" : data = data.toString().replace(/\{\{add\}\}/, "selected"); break;
             case "divide" : data = data.toString().replace(/\{\{divide\}\}/, "selected"); break;
@@ -35,11 +37,11 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.get("/", function (req, res) {
+app.get("/*", function (req, res) {
     return readAndReplaceIndexHtml(res, "", "", "", "add");
 });
 
-app.post("/", function(req, res){
+app.post("/*", function(req, res){
     const numberOne = parseFloat(req.body["number-one"]);
     const numberTwo = parseFloat(req.body["number-two"]);
     const operator = req.body["operator"];
