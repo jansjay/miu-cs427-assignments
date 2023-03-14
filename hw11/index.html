@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link href="css/styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div><h1>Simple Calculator</h1></div>
+        </div>
+        <div class="content">
+            <div class="calculator">
+                <form action="" method="post">
+                    <div class="calculator-row function">
+                        <input id="number-one" name="number-one" type="number" placeholder="Enter Number One" value="{{numberOne}}">
+                    </div>
+                    <div class="calculator-row function">                
+                        <select title="Select operator" name="operator">
+                            <option value="add" {{add}}>+</option>
+                            <option value="subtract" {{subtract}}>-</option>
+                            <option value="multiply" {{multiply}}>*</option>
+                            <option value="divide" {{divide}}>/</option>
+                        </select>
+                    </div>
+                    <div class="calculator-row function">                
+                        <input id="number-two" name="number-two" type="number" placeholder="Enter Number Two" value="{{numberTwo}}">
+                    </div>
+                    <div class="calculator-row submit">
+                        <input type="submit" value="=">
+                    </div>
+                </form>
+                <div class="calculator-row result">
+                    <input type="number" readonly title="Result" value="{{result}}">
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+</body>
+</html>

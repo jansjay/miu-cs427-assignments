@@ -1,0 +1,37 @@
+body {    
+    background-color: cadetblue;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    border: 2px solid black;
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: aquamarine;
+}
+.calculator {
+    border: 1px solid grey;
+    padding: 1em;
+    margin: 1em;
+}
+.calculator-row {
+    clear: both;
+    width: 100%;
+    padding: 5px;
+    
+}
+input, select {
+    width: 60%;    
+    text-align: center;
+    box-sizing: border-box;
+}
+.result {
+    background-color: green;
+}
+.function {
+    background-color: beige;
+}
+.submit {
+    background-color: burlywood;
+}
