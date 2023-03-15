@@ -80,7 +80,7 @@ const getDivsToMove = function() {
 
 const shuffle = function() {
     var traceBack = [];
-    const maxShuffle = 50;
+    const maxShuffle = 200;
     for(var i = 0; i < maxShuffle; i++) {        
         var toMove = getRandomDivToMove(getDivsToMove());
         swap(toMove, false);        
@@ -88,6 +88,7 @@ const shuffle = function() {
         traceBack[maxShuffle - i - 1] = [parseInt(toMove.style.left), parseInt(toMove.style.top)];
     }
     //Print trace in the console so that can be used to solve the puzzle
+    console.log("Perform below moves exactly in order to come to the state where shuffle started.");
     for(var i = 0; i < maxShuffle; i++) {
         console.log("Move " + (i + 1) + ". " + (Math.floor(traceBack[i][0]/100) + 1) + ", " + (Math.floor(traceBack[i][1])/100 + 1));
     }
