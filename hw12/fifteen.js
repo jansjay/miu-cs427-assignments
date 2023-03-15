@@ -1,13 +1,18 @@
 "use strict";
-let puzzleArea = null;
-let divs = null;
-let glowTimer1 = null;
-let glowTimer2 = null;
 let space = function(x, y){
     this.x = x;
     this.y = y;
 }
+
+let puzzleArea = null;
+let divs = null;
 let emptySpace = new space(0, 0);
+
+//Additional for glowing when won
+let glowTimer1 = null;
+let glowTimer2 = null;
+
+
 const init = function() {
     puzzleArea = document.getElementById('puzzlearea');
     divs = puzzleArea.getElementsByTagName("div");
@@ -24,7 +29,7 @@ const init = function() {
         y = (Math.floor(i / 4) * 100) ;
 
         // set basic style and background
-        div.className = "puzzlepiece";
+        div.className = "puzzlepiece image0";
         div.style.left = x + 'px';
         div.style.top = y + 'px';
         div.style.backgroundPosition = -x + 'px ' + (-y) + 'px';
@@ -39,7 +44,8 @@ const init = function() {
     // Now the empty space is the last
     emptySpace.x = x + 100;
     emptySpace.y = y;
-    document.getElementById('shufflebutton').onclick = shuffle;    
+    document.getElementById('shufflebutton').onclick = shuffle; 
+    document.getElementById('changeImagebutton').onclick = changeImage;
 };
 
 const getRandomDivToMove = function(moves){
@@ -96,6 +102,13 @@ const shuffle = function() {
     glowIfWon();
 }
 
+const changeImage = function() {    
+    var imageNo = Math.floor(Math.random()*(3));
+    for (var i = 0; i< divs.length; i++) {
+        divs[i].className = divs[i].className.replace(/image[0-3]/, "image" + imageNo);
+    }
+}
+
 const swap = function(toMoveElement, manualMove){
     let nextEmptyX = parseInt(toMoveElement.style.left);
     let nextEmptyY = parseInt(toMoveElement.style.top);
@@ -109,12 +122,13 @@ const swap = function(toMoveElement, manualMove){
 }
 const move = function(target){
     let div = document.elementFromPoint(target.x, target.y);
+    var oldClassName = div.className;
     if(canDivBeMoved(div)) {
         swap(div, true);
         setDivStyles();
-        colorForWhile(div, div.className, "puzzlepiece valid");
+        colorForWhile(div, div.className, oldClassName + " valid");
     } else {
-        colorForWhile(div, div.className, "puzzlepiece invalid");
+        colorForWhile(div, div.className, oldClassName + " invalid");
     }
 }
 
@@ -140,12 +154,12 @@ const getDiv = function(x, y){
 const setDivStyles = function(){
     for (var i=0; i< divs.length; i++) {
         var div = divs[i];
-        div.className = "puzzlepiece";
+        div.className = div.className = div.className.replace(/movablepiece/, "");
     }
     var spacesWhichCanBeMoved = getDivsToMove();
     for (var i=0; i<spacesWhichCanBeMoved.length; i++) {
         var div = getDiv(spacesWhichCanBeMoved[i].x, spacesWhichCanBeMoved[i].y);
-        div.className = "puzzlepiece movablepiece";
+        div.className = div.className.replace(/movablepiece/, "") + " movablepiece";
     }
 }
 
@@ -170,13 +184,13 @@ const glowIfWon = function() {
         glowTimer2 = null;
     }
     if(checkWin()){
-        alert("Congratulations, You have won!!!");
         glowTimer1 = setInterval(() => {
             puzzleArea.className = "";
         }, 400);
         glowTimer2 = setInterval(() => {
             puzzleArea.className = "glow";
         }, 800);
+        alert("Congratulations, You have won!!!");        
     } else {
         puzzleArea.className = "";
     }
