@@ -1,6 +1,8 @@
 "use strict";
 let puzzleArea = null;
 let divs = null;
+let glowTimer1 = null;
+let glowTimer2 = null;
 let space = function(x, y){
     this.x = x;
     this.y = y;
@@ -25,7 +27,6 @@ const init = function() {
         div.className = "puzzlepiece";
         div.style.left = x + 'px';
         div.style.top = y + 'px';
-        div.style.backgroundImage = 'url("background.jpg")';
         div.style.backgroundPosition = -x + 'px ' + (-y) + 'px';
         
         // store x and y for later
@@ -40,6 +41,7 @@ const init = function() {
     emptySpace.y = y;
     document.getElementById('shufflebutton').onclick = shuffle;    
 };
+
 const getRandomDivToMove = function(moves){
     var move = moves[Math.floor(Math.random()*(moves.length))];
     return getDiv(move.x, move.y);
@@ -54,6 +56,7 @@ const canDivBeMoved = function(divToMove){
     }
     return false;
 }
+
 const getDivsToMove = function() {
     var spaces = [];
     //left
@@ -74,51 +77,58 @@ const getDivsToMove = function() {
     }
     return spaces;
 }
+
 const shuffle = function() {
     var traceBack = [];
-    const maxShuffle = 100;
+    const maxShuffle = 50;
     for(var i = 0; i < maxShuffle; i++) {        
         var toMove = getRandomDivToMove(getDivsToMove());
-        swap(toMove);        
+        swap(toMove, false);        
         // This is to trace back the correct path
-        //traceBack[maxShuffle - i - 1] = [toMove.x, toMove.y];        
+        traceBack[maxShuffle - i - 1] = [parseInt(toMove.style.left), parseInt(toMove.style.top)];
     }
-    //Print trace back
-    //for(var i = 0; i < maxShuffle; i++) {
-    //    console.log((i + 1) + ". " + (Math.floor(traceBack[i][0]/100) + 1) + ", " + (Math.floor(traceBack[i][1])/100 + 1));
-    //}
+    //Print trace in the console so that can be used to solve the puzzle
+    for(var i = 0; i < maxShuffle; i++) {
+        console.log("Move " + (i + 1) + ". " + (Math.floor(traceBack[i][0]/100) + 1) + ", " + (Math.floor(traceBack[i][1])/100 + 1));
+    }
+    setDivStyles();
+    glowIfWon();
 }
-const swap = function(toMoveElement){
+
+const swap = function(toMoveElement, manualMove){
     let nextEmptyX = parseInt(toMoveElement.style.left);
     let nextEmptyY = parseInt(toMoveElement.style.top);
     toMoveElement.style.left = emptySpace.x + 'px';
     toMoveElement.style.top = emptySpace.y + 'px';
     emptySpace.x = nextEmptyX;
-    emptySpace.y = nextEmptyY;  
+    emptySpace.y = nextEmptyY;
+    if(manualMove) {
+        glowWin();
+    }
 }
 const move = function(target){
     let div = document.elementFromPoint(target.x, target.y);
     if(canDivBeMoved(div)) {
-        swap(div);
-        colorForWhile(div,"green");
+        swap(div, true);
+        setDivStyles();
+        colorForWhile(div, div.className, "puzzlepiece valid");
     } else {
-        colorForWhile(div,"red");
+        colorForWhile(div, div.className, "puzzlepiece invalid");
     }
 }
 
-const colorForWhile = function(div, newColor) {
-    var oldColor = div.style.borderColor;
-    div.style.borderColor = newColor;
+const colorForWhile = function(div, oldClassName, className) {
+    div.className = className;
     setTimeout(() => {
-        div.style.borderColor = oldColor;
+        div.className = oldClassName;
     }, 1000);
 }
 
 const getDiv = function(x, y){
     for (var i=0; i< divs.length; i++) {
         var div = divs[i];
-        let divX = parseInt(div.style.left);
-        let divY = parseInt(div.style.top);
+        var divX = parseInt(div.style.left);
+        var divY = parseInt(div.style.top);
         if( divX <= x && divX + 100 > x &&
             divY <= y && divY + 100 > y) {
             return div;
@@ -126,6 +136,49 @@ const getDiv = function(x, y){
     }
 }
 
+const setDivStyles = function(){
+    for (var i=0; i< divs.length; i++) {
+        var div = divs[i];
+        div.className = "puzzlepiece";
+    }
+    var spacesWhichCanBeMoved = getDivsToMove();
+    for (var i=0; i<spacesWhichCanBeMoved.length; i++) {
+        var div = getDiv(spacesWhichCanBeMoved[i].x, spacesWhichCanBeMoved[i].y);
+        div.className = "puzzlepiece movablepiece";
+    }
+}
 
+const checkWin = function(){
+    for (var i=0; i< divs.length; i++) {
+        var div = divs[i];
+        var divFromOriginalXY = getDiv(div.x, div.y)
+        if( div != divFromOriginalXY) {
+            return false;
+        }
+    }
+    return true;
+}
 
+const glowIfWon = function() {
+    if(glowTimer1 != null){
+        clearInterval(glowTimer1);
+        glowTimer1 = null;
+    }
+    if(glowTimer2 != null){
+        clearInterval(glowTimer2);
+        glowTimer2 = null;
+    }
+    if(checkWin()){
+        alert("Congratulations, You have won!!!");
+        glowTimer1 = setInterval(() => {
+            puzzleArea.className = "";
+        }, 400);
+        glowTimer2 = setInterval(() => {
+            puzzleArea.className = "glow";
+        }, 800);
+    } else {
+        puzzleArea.className = "";
+    }
+
+}
 window.onload = init;
