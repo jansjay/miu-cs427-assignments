@@ -103,7 +103,7 @@ const swap = function(toMoveElement, manualMove){
     emptySpace.x = nextEmptyX;
     emptySpace.y = nextEmptyY;
     if(manualMove) {
-        glowWin();
+        glowIfWon();
     }
 }
 const move = function(target){
