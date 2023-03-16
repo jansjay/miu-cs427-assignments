@@ -103,7 +103,7 @@ const shuffle = function() {
 }
 
 const changeImage = function() {    
-    var imageNo = Math.floor(Math.random()*(3));
+    var imageNo = Math.floor(Math.random()*(4));
     for (var i = 0; i< divs.length; i++) {
         divs[i].className = divs[i].className.replace(/image[0-3]/, "image" + imageNo);
     }
