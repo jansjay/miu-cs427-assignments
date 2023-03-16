@@ -3,7 +3,6 @@ const app = express();
 const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
 const numberQuiz = require("./lib/number-quiz");
-const { getNextQuestionNumber } = require("./lib/number-quiz");
 const port = 8080;
 
 app.use(sessions({
