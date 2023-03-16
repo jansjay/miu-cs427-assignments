@@ -27,9 +27,6 @@ app.get("/", function(req, res){
     }
     var nextQuestionNumber = numberQuiz.getNextQuestionNumber(session.answers);    
     var score = numberQuiz.getScore(session.answers);
-    console.log(score);
-    console.log(nextQuestionNumber);
-    console.log(session.answers);
     if(!numberQuiz.isCompleted(session.answers)){
         res.render('index', { 
                                 currentScore: score, 
