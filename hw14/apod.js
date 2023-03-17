@@ -15,7 +15,9 @@ function getPicture () {
 };
 function showPicture(data) {
     $("#pic").attr("src", data.url);
-    $(document).prop('title', data.title);
+    // Title is used as the page title
+    $(document).prop('title', data.title + " | Astronomy Picture of the Day");
+    // Explanation is used as the picture title
     $("#pic").prop('title', data.explanation);
     $("#pic").show();
 };
