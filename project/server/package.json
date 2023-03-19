@@ -1,0 +1,18 @@
+{
+  "name": "cs-472-project",
+  "version": "1.0.0",
+  "description": "CS 472 Online Dictionary Project",
+  "main": "dictionary.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sanjaya Jayasooriya",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}

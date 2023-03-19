@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAP Dictionary</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="static/dict.js"></script>
+    <link href="static/dict.css" type="text/css" rel="stylesheet">
+</head>    
+<body>
+    <div class="container">
+        <div id="title">
+            WAP Online Dictionary
+        </div>
+        <div id="search-area">
+            <div class="search-area-row">
+                <label for="word">Term</label>
+            </div>
+            <div class="search-area-row">
+                <input type="text" id="word" name="word">
+            </div>
+            <div class="search-area-row">
+                <button type="button" id="lookup-btn">Lookup</button>
+            </div>
+            <div id="alert">                
+            </div>
+        </div>
+        <div id="results">
+            <table id="results-table">
+                <thead id="results-head">
+                    <th>Word Type</th>
+                    <th>Definition</th>
+                </thead>
+                <tbody id="results-body">                    
+                </tbody>
+            </table>
+        </div>  
+        <div id="footer">
+            <a href="http://validator.w3.org/check?uri=https://jansjay.github.io/miu-cs427-assignments/project/server/views/dict.html" target="_blank" rel="noopener"><img src="http://mumstudents.org/cs472/2014-09/images/w3c-html.png" alt="Valid HTML"></a>
+            <a href="http://jigsaw.w3.org/css-validator/validator?uri=https://jansjay.github.io/miu-cs427-assignments/project/server/views/dict.html" target="_blank"  rel="noopener"><img src="http://mumstudents.org/cs472/2014-09/images/w3c-css.png" alt="Valid CSS"></a>        
+        </div>  
+    </div>
+</body>
+</html>
