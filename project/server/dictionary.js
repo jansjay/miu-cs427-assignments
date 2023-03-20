@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/static', express.static('static'));
 app.get("/", function(req, res){
-    fs.readFile("views/dict.html", function(err, data) {
+    fs.readFile("dict.html", function(err, data) {
         if (err) {
             res.writeHead(404, {'Content-Type': 'text/html'});
             return res.end("404 Not Found");
