@@ -27,5 +27,13 @@ function showWord(data) {
 };
 function noWord(error) {
     $("#alert").show();
-    $("#alert").html(error.responseJSON.error);
+    if(error.responseJSON == undefined || error.responseJSON.error == undefined) {
+        if(error.responseText == undefined) {
+            $("#alert").html(error.statusText);
+        } else {
+            $("#alert").html(error.responseText);
+        }
+    } else {
+        $("#alert").html(error.responseJSON.error);
+    }
 };
